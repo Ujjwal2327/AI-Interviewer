@@ -1,0 +1,21 @@
+npm i
+npx shadcn-ui@latest init
+npm install @clerk/nextjs
+npm i drizzle-orm @neondatabase/serverless
+npm i -D drizzle-kit
+
+npm run db:push
+npm run db:studio
+npm run dev
+
+
+
+
+const path = usePathname()
+const user =useUser()
+const router = userRouter()   router.push('/path')
+{params}
+
+
+next js, shadcn, postgreSQL, drizzle orm, neon,tech
+aistudio.google.com
