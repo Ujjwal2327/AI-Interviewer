@@ -1,5 +1,5 @@
 import { Lightbulb, Volume2 } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 
 function QuestionsSection({ mockInterviewQuestion, activeQuestionIndex }) {
   const textToSpeach = (text) => {
@@ -10,14 +10,15 @@ function QuestionsSection({ mockInterviewQuestion, activeQuestionIndex }) {
       alert("Sorry, Your browser does not support text to speech");
     }
   };
+
   return (
     mockInterviewQuestion && (
       <div className="p-5 border rounded-lg my-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {mockInterviewQuestion &&
-            mockInterviewQuestion.map((question, index) => (
+          {mockInterviewQuestion?.length &&
+            mockInterviewQuestion?.map((question, index) => (
               <h2
-               key={index}
+                key={index}
                 className={`p-2 border rounded-full
                 text-xs md:text-sm text-center cursor-pointer
                 ${activeQuestionIndex == index && "bg-primary text-white"}`}

@@ -6,15 +6,18 @@ import React, { useEffect, useState } from "react";
 import QuestionsSection from "./_components/QuestionsSection";
 // import RecordAnswerSection from "./_components/RecordAnswerSection";
 import dynamic from "next/dynamic";
-const RecordAnswerSection = dynamic(() => import("./_components/RecordAnswerSection"), {
-  ssr: false,
-});
+const RecordAnswerSection = dynamic(
+  () => import("./_components/RecordAnswerSection"),
+  {
+    ssr: false,
+  }
+);
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 function StartInterview({ params }) {
   const [interviewData, setInterviewData] = useState();
-  const [mockInterviewQuestion, setMockInterviewQuestion] = useState();
+  const [mockInterviewQuestion, setMockInterviewQuestion] = useState([]);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   useEffect(() => {
     GetInterviewDetails();
@@ -31,7 +34,9 @@ function StartInterview({ params }) {
 
     const jsonMockResp = JSON.parse(result[0].jsonMockResp);
     console.log(jsonMockResp);
-    setMockInterviewQuestion(jsonMockResp);
+    if (jsonMockResp?.questions)
+      setMockInterviewQuestion(jsonMockResp.questions);
+    else setMockInterviewQuestion(jsonMockResp);
     setInterviewData(result[0]);
   };
   return (
